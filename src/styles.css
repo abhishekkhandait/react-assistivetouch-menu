@@ -9,6 +9,8 @@
     left: 0px;
     border-radius: 30%;
     padding: 6px;
+    touch-action: none;
+    cursor: grab;
 }
 
 .menuball>div {

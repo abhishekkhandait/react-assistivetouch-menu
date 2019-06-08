@@ -7,8 +7,7 @@ export default class MenuBall extends React.Component<IMenuBallPosition, IMenuBa
 	private prePos: IMenuBallPosition;
 	constructor(props, state) {
 		super(props, state);
-		this.state = { top: 100, left: 0 };
-		// this.setState({ top: 100, left: 0 });
+		this.state = { top: 0, left: 0 };
 	}
 
 	componentDidMount() {
@@ -26,9 +25,12 @@ export default class MenuBall extends React.Component<IMenuBallPosition, IMenuBa
 		this.prePos = { left: e.clientX, top: e.clientY };
 		window.addEventListener('mousemove', this.onMouseMove);
 		window.addEventListener('mouseup', this.onMouseUp);
+		window.addEventListener('touchmove', this.onTouchMove);
+		window.addEventListener('touchend', this.onTouchEnd);
+		window.addEventListener('touchcancel', this.onTouchEnd);
 	}
 
-	private onMouseMove = (e: MouseEvent) => {
+	private onMouseMove = (e: MouseEvent | Touch) => {
 		const diffPos = { left: this.prePos.left - e.clientX, top: this.prePos.top - e.clientY };
 		this.setState({ left: this.state.left - diffPos.left, top: this.state.top - diffPos.top });
 		this.prePos = { left: e.clientX, top: e.clientY };
@@ -38,12 +40,27 @@ export default class MenuBall extends React.Component<IMenuBallPosition, IMenuBa
 		this.removeListeners();
 	}
 
+	private onTouchStart = (e: React.TouchEvent) => {
+		e.preventDefault();
+		this.onMouseDown(e.touches[0]);
+	}
+
+	private onTouchMove = (e: TouchEvent) => {
+		e.preventDefault();
+		this.onMouseMove(e.touches[0]);
+	}
+
+	private onTouchEnd = (e: TouchEvent) => {
+		e.preventDefault();
+		this.onMouseUp(e.touches[0]);
+	}
+
 	private removeListeners() {
 		window.removeEventListener('mousemove', this.onMouseMove);
 		window.removeEventListener('mouseup', this.onMouseUp);
 	}
 
 	render() {
-		return <div className='menuball' style={this.setstyles()} onMouseDown={this.onMouseDown}><div></div></div >;
+		return <div className='menuball' style={this.setstyles()} onMouseDown={this.onMouseDown} onTouchStart={this.onTouchStart} ><div></div></div >;
 	}
 };
