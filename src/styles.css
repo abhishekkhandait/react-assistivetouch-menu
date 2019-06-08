@@ -1,3 +1,5 @@
+.assitivetouch-menu-container {}
+
 .menuball {
     position: fixed;
     width: 35px;
@@ -11,6 +13,7 @@
     padding: 6px;
     touch-action: none;
     cursor: grab;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .menuball>div {
@@ -18,4 +21,32 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
+}
+
+.assistivetouch-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    /* aligns on vertical for column */
+    align-items: center;
+}
+
+.assistivetouch-menu-content {
+    transform: scale(0);
+    width: 220px;
+    height: 250px;
+    background: rgb(0, 0, 0);
+    opacity: 0;
+    border-radius: 25px;
+}
+
+.assistivetouch-menu-content.open {
+    transform: scale(1);
+    opacity: 0.5;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
