@@ -3,7 +3,7 @@
 React assistivetouch menu is a react component inspired from iOS assitivetouch.
 
 #   ![Assistive touch Menu](https://im3.ezgif.com/tmp/ezgif-3-69990161eb79.gif)
- 
+[Demo](https://codesandbox.io/s/modest-surf-glql8)  
 
 ## Installation
 
