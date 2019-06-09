@@ -2,13 +2,17 @@
   "name": "react-assitivetouch-menu",
   "version": "0.0.1",
   "description": "iOS inspired assistive touch menu built with React",
-  "main": "index.js",
+  "main": "dist/react-assistivetouch.js",
   "author": "Abhishek Khandait",
   "license": "MIT",
   "private": false,
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhishekkhandait/react-assistivetouch-menu.git"
   },
   "devDependencies": {
     "@types/react": "^16.8.19",
@@ -19,5 +23,8 @@
     "typescript": "^3.5.1",
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.3"
+  },
+  "bugs": {
+    "url": "https://github.com/abhishekkhandait/react-assistivetouch-menu/issues"
   }
 }
