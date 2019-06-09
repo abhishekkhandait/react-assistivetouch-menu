@@ -1,2 +1,2 @@
-export * from './AssistiveTouch';
-export * from './types';
+export * from "./assistivetouch";
+export * from "./types";
