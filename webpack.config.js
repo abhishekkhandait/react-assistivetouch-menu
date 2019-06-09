@@ -2,10 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./demo/index.tsx",
+  entry: "./src/index.ts",
   output: {
-    // path: path.resolve(__dirname, "./dist"),
-    path: path.resolve(__dirname, "./demo"),
+    path: path.resolve(__dirname, "./dist"),
     filename: "react-assistivetouch.js"
   },
   module: {
