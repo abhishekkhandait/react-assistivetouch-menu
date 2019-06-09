@@ -4,19 +4,19 @@ export interface MenuBallPosition {
 }
 
 export interface MenuBallProps {
+  menuItems: MenuItem[];
   behaviour: 'snapToSides' | 'freeflow';
   size: 'XS' | 'S' | 'M' | 'L' | 'XL';
   initialPos?: MenuBallPosition;
-  onClick?: () => void;
 }
 
 export interface MenuItem {
-  icon: HTMLElement;
-  onclick?: () => void;
+  icon: JSX.Element;
+  label: string;
   childMenuItems?: MenuItem[];
 }
 
-export interface MenuState {
+export interface AssistiveTouchMenuState {
   activeMenu: MenuItem | null;
   open: boolean;
 }

@@ -14,6 +14,7 @@
     touch-action: none;
     cursor: grab;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease;
 }
 
 .menuball>div {
@@ -21,6 +22,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
 }
 
 .assistivetouch-menu-overlay {
@@ -34,19 +36,36 @@
     justify-content: center;
     /* aligns on vertical for column */
     align-items: center;
+    touch-action: none;
 }
 
 .assistivetouch-menu-content {
     transform: scale(0);
-    width: 220px;
+    width: 250px;
     height: 250px;
-    background: rgb(0, 0, 0);
-    opacity: 0;
+    background: rgb(0, 0, 0, 0);
     border-radius: 25px;
 }
 
 .assistivetouch-menu-content.open {
-    transform: scale(1);
-    opacity: 0.5;
-    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: transform 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+    background: rgb(0, 0, 0, 0.5);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.assistivetouch-menu-item {
+    position: absolute;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.assistivetouch-menu-item>label {
+    font-size: 14px;
+    font-family: "Product Sans", Arial, Helvetica, sans-serif;
 }

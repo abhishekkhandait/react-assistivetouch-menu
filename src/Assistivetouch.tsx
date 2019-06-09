@@ -2,14 +2,14 @@ import * as React from "react";
 import { MenuBallPosition, MenuBallProps } from "./types";
 
 import './styles.css';
-import Menu from "./Menu";
+import AssistiveTouchMenu from "./AssistiveTouchMenu";
 
 interface MenuBallState {
 	position: MenuBallPosition;
 	isOpen: boolean;
 }
 
-export default class MenuBall extends React.Component<MenuBallProps, MenuBallState> {
+export default class AssistiveTouch extends React.Component<MenuBallProps, MenuBallState> {
 	private prePos: MenuBallPosition;
 	private domRef: React.RefObject<HTMLDivElement>;
 	private positionChanged: boolean;
@@ -22,7 +22,6 @@ export default class MenuBall extends React.Component<MenuBallProps, MenuBallSta
 			position: { top: 0, left: 0 },
 			isOpen: false,
 		}
-
 	}
 
 	componentDidMount() {
@@ -36,6 +35,7 @@ export default class MenuBall extends React.Component<MenuBallProps, MenuBallSta
 		return {
 			top: `${this.state.position.top}px`,
 			left: `${this.state.position.left}px`,
+			transform: `scale(${this.state.isOpen ? '0' : '1'}`,
 		}
 	}
 
@@ -52,18 +52,18 @@ export default class MenuBall extends React.Component<MenuBallProps, MenuBallSta
 	private onMouseMove = (e: MouseEvent | Touch) => {
 		const diffPos = { left: this.prePos.left - e.clientX, top: this.prePos.top - e.clientY };
 		this.positionChanged = true;
-		const bbox = this.domRef.current.getBoundingClientRect();
+		// const bbox = this.domRef.current.getBoundingClientRect();
 		const left = this.state.position.left - diffPos.left;
 		const top = this.state.position.top - diffPos.top;
-		const right = bbox.right;
-		const bottom = bbox.bottom;
+		// const right = bbox.right;
+		// const bottom = bbox.bottom;
 		this.setState({
 			position: {
 				left, top,
 			}
 		});
-		if (top > 1 && left > 1 && (right - diffPos.left) < (window.innerWidth - 2) && (bottom - diffPos.top) < (window.innerHeight - 2)) {
-		}
+		/* if (top > 1 && left > 1 && (right - diffPos.left) < (window.innerWidth - 2) && (bottom - diffPos.top) < (window.innerHeight - 2)) {
+		} */
 		this.prePos = { left: e.clientX, top: e.clientY };
 	}
 
@@ -96,13 +96,30 @@ export default class MenuBall extends React.Component<MenuBallProps, MenuBallSta
 		window.removeEventListener('touchcancel', this.onTouchEnd);
 	}
 
+	private onClickOverlay = (e: MouseEvent) => {
+		e.preventDefault();
+		e.stopPropagation();
+		if (this.state.isOpen) {
+			e.stopPropagation();
+			this.setState({ isOpen: false });
+		}
+	}
+
+	private renderMenu() {
+		if (!this.positionChanged) {
+			return <AssistiveTouchMenu menuItems={this.props.menuItems} open={this.state.isOpen} position={this.state.position} onClickOverlay={this.onClickOverlay} ></AssistiveTouchMenu>
+		}
+	}
+
 	render() {
 		return (
 			<div className="assitivetouch-menu-container" ref={this.domRef}>
 				<div className='menuball' style={this.setstyles()} onMouseDown={this.onMouseDown} onTouchStart={this.onTouchStart} >
 					<div></div>
 				</div>
-				<Menu menuItems={[]} open={this.state.isOpen} ></Menu>
+				{
+					this.renderMenu()
+				}
 			</div >
 		);
 	}
