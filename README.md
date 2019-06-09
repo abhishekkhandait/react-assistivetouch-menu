@@ -2,12 +2,16 @@
 
 React assistivetouch menu is a react component inspired from iOS assitivetouch.
 
-#   ![Assistive touch Menu](https://im3.ezgif.com/tmp/ezgif-3-69990161eb79.gif)
-[Demo](https://codesandbox.io/s/modest-surf-glql8)  
+[![Greenkeeper badge](https://badges.greenkeeper.io/abhishekkhandait/react-assistivetouch-menu.svg)](https://greenkeeper.io/) [![travis-ci badge](https://travis-ci.org/abhishekkhandait/react-assistivetouch-menu.svg?branch=master)](https://travis-ci.org/abhishekkhandait/react-assistivetouch-menu) [![downloads badge](https://img.shields.io/npm/dt/pan-n-zoom.svg)]([https://www.npmjs.com/package/pan-n-zoom)
+
+# ![Assistive touch Menu](https://im3.ezgif.com/tmp/ezgif-3-69990161eb79.gif)
+
+[Demo](https://codesandbox.io/s/modest-surf-glql8)
 
 ## Installation
 
 The easiest way to use react-select is to install it from npm and build it into your app with Webpack.
+
 ```bash
 yarn add react-assistivetouch-menu
 ```
@@ -62,7 +66,9 @@ export default class App extends React.Component<{}, {}> {
 ```
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
