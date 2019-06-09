@@ -1,16 +1,16 @@
 import * as React from "react";
-import { MenuBallPosition, MenuBallProps } from "./types";
+import { AssitiveTouchPosition, AssistiveTouchProps } from "./types";
+import { AssistiveTouchMenu } from "./AssistiveTouchMenu";
 
 import './styles.css';
-import AssistiveTouchMenu from "./AssistiveTouchMenu";
 
-interface MenuBallState {
-	position: MenuBallPosition;
+interface AssistiveTouchState {
+	position: AssitiveTouchPosition;
 	isOpen: boolean;
 }
 
-export default class AssistiveTouch extends React.Component<MenuBallProps, MenuBallState> {
-	private prePos: MenuBallPosition;
+export class AssistiveTouch extends React.Component<AssistiveTouchProps, AssistiveTouchState> {
+	private prePos: AssitiveTouchPosition;
 	private domRef: React.RefObject<HTMLDivElement>;
 	private positionChanged: boolean;
 

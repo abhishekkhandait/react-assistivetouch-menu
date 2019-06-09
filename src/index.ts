@@ -1,2 +1,2 @@
-export * from './AssistiveTouchMenu';
+export * from './AssistiveTouch';
 export * from './types';

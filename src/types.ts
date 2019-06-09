@@ -1,13 +1,13 @@
-export interface MenuBallPosition {
+export interface AssitiveTouchPosition {
   top: number;
   left: number;
 }
 
-export interface MenuBallProps {
+export interface AssistiveTouchProps {
   menuItems: MenuItem[];
   behaviour: 'snapToSides' | 'freeflow';
   size: 'XS' | 'S' | 'M' | 'L' | 'XL';
-  initialPos?: MenuBallPosition;
+  initialPos?: AssitiveTouchPosition;
 }
 
 export interface MenuItem {

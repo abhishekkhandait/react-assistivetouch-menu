@@ -1,15 +1,15 @@
 import * as React from "react";
 
-import { MenuItem, AssistiveTouchMenuState, MenuBallPosition } from "./types";
+import { MenuItem, AssistiveTouchMenuState, AssitiveTouchPosition } from "./types";
 
 interface AssistiveTouchMenuProps {
     menuItems: MenuItem[];
     open: boolean;
-    position: MenuBallPosition;
+    position: AssitiveTouchPosition;
     onClickOverlay: (e) => void;
 }
 
-export default class AssistiveTouchMenu extends React.Component<AssistiveTouchMenuProps, AssistiveTouchMenuState> {
+export class AssistiveTouchMenu extends React.Component<AssistiveTouchMenuProps, AssistiveTouchMenuState> {
     private domRef: React.RefObject<HTMLDivElement>;
     constructor(props: AssistiveTouchMenuProps, state: AssistiveTouchMenuState) {
         super(props, state);
