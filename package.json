@@ -11,6 +11,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production"
   },
+  "keywords": [
+    "react",
+    "react-component",
+    "react-menu",
+    "assistivetouch",
+    "assistivetouch-menu",
+    "menu"
+  ],
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
