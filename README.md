@@ -4,7 +4,7 @@ React assistivetouch menu is a react component inspired from iOS assitivetouch.
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/abhishekkhandait/react-assistivetouch-menu.svg)](https://greenkeeper.io/) [![travis-ci badge](https://travis-ci.org/abhishekkhandait/react-assistivetouch-menu.svg?branch=master)](https://travis-ci.org/abhishekkhandait/react-assistivetouch-menu) [![downloads badge](https://img.shields.io/npm/dt/react-assistivetouch-menu.svg?style=popout)]([https://www.npmjs.com/package/react-assistivetouch-menu)
 
-# ![Assistive touch Menu](https://giant.gfycat.com/IlliterateSentimentalHorsechestnutleafminer.webm)
+# ![Assistive touch Menu](https://media.giphy.com/media/QaeDPpRDexSeSW9ZDN/giphy.gif)
 
 [Demo](https://codesandbox.io/s/modest-surf-glql8)
 
