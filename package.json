@@ -1,6 +1,6 @@
 {
   "name": "react-assistivetouch-menu",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "iOS inspired assistive touch menu built with React",
   "main": "dist/index.js",
   "author": "Abhishek Khandait",
@@ -11,9 +11,6 @@
     "prepublish": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist && webpack --mode=production && rm -rf ./dist/demo"
-  },
-  "publishConfig": {
-    "access": "restricted"
   },
   "keywords": [
     "react",
