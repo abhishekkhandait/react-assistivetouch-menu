@@ -12,7 +12,7 @@ interface AssistiveTouchState {
 export class AssistiveTouch extends React.Component<
   AssistiveTouchProps,
   AssistiveTouchState
-> {
+  > {
   private prePos: AssitiveTouchPosition;
   private domRef: React.RefObject<HTMLDivElement>;
   private positionChanged: boolean;
@@ -52,24 +52,24 @@ export class AssistiveTouch extends React.Component<
   };
 
   private onMouseMove = (e: MouseEvent | Touch) => {
+    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     const diffPos = {
-      left: this.prePos.left - e.clientX,
-      top: this.prePos.top - e.clientY
+      left: e.clientX <= w ? (e.clientX <= 0 ? this.state.position.left : this.prePos.left - e.clientX) : 0,
+      top: e.clientY <= h ? (e.clientY <= 0 ? this.state.position.top : this.prePos.top - e.clientY) : 0,
     };
     this.positionChanged = true;
-    // const bbox = this.domRef.current.getBoundingClientRect();
-    const left = this.state.position.left - diffPos.left;
-    const top = this.state.position.top - diffPos.top;
-    // const right = bbox.right;
-    // const bottom = bbox.bottom;
+    let left = this.state.position.left - diffPos.left;
+    left > w - this.domRef.current.clientWidth && (left = w - this.domRef.current.clientWidth)
+    let top = this.state.position.top - diffPos.top;
+    top > h - this.domRef.current.clientHeight && (top = h - this.domRef.current.clientHeight)
+
     this.setState({
       position: {
-        left,
-        top
+        left: left < 0 ? 0 : left,
+        top: top < 0 ? 0 : top,
       }
     });
-    /* if (top > 1 && left > 1 && (right - diffPos.left) < (window.innerWidth - 2) && (bottom - diffPos.top) < (window.innerHeight - 2)) {
-		} */
     this.prePos = { left: e.clientX, top: e.clientY };
   };
 
@@ -113,30 +113,16 @@ export class AssistiveTouch extends React.Component<
 
   private renderMenu() {
     if (!this.positionChanged) {
-      return (
-        <AssistiveTouchMenu
-          menuItems={this.props.menuItems}
-          open={this.state.isOpen}
-          position={this.state.position}
-          onClickOverlay={this.onClickOverlay}
-        />
-      );
+      return <AssistiveTouchMenu menuItems={this.props.menuItems} open={this.state.isOpen} position={this.state.position} onClickOverlay={this.onClickOverlay} />;
     }
   }
 
   render() {
     return (
-      <div className="assitivetouch-menu-container" ref={this.domRef}>
-        <div
-          className="menuball"
-          style={this.setstyles()}
-          onMouseDown={this.onMouseDown}
-          onTouchStart={this.onTouchStart}
-        >
-          <div />
-        </div>
+      <div className="assitivetouch-menu-container">
+        <div className="menuball" ref={this.domRef} style={this.setstyles()} onMouseDown={this.onMouseDown} onTouchStart={this.onTouchStart}><div className="menuball_placeholder"></div></div>
         {this.renderMenu()}
-      </div>
+      </div >
     );
   }
 }
