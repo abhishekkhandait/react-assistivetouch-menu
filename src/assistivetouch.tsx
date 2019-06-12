@@ -74,12 +74,12 @@ export class AssistiveTouch extends React.Component<AssistiveTouchProps, Assisti
 	};
 
 	private onMouseUp = e => {
-		this.removeListeners();
 		if (this.positionChanged) {
 			this.props.behaviour === 'snapToSides' && this.snapToSide(e);
 		} else {
 			this.setState({ isOpen: !this.state.isOpen });
 		}
+		this.removeListeners();
 		this.positionChanged = false;
 	};
 
@@ -132,17 +132,17 @@ export class AssistiveTouch extends React.Component<AssistiveTouchProps, Assisti
 
 	private onTouchStart = (e: React.TouchEvent) => {
 		e.preventDefault();
-		this.onMouseDown(e.touches[0]);
+		this.onMouseDown(e.changedTouches[0]);
 	};
 
 	private onTouchMove = (e: TouchEvent) => {
 		e.preventDefault();
-		this.onMouseMove(e.touches[0]);
+		this.onMouseMove(e.changedTouches[0]);
 	};
 
 	private onTouchEnd = (e: TouchEvent) => {
 		e.preventDefault();
-		this.onMouseUp(e.touches[0]);
+		this.onMouseUp(e.changedTouches[0]);
 	};
 
 	private removeListeners() {
