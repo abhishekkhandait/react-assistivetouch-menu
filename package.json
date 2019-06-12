@@ -8,9 +8,9 @@
   "private": false,
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepublish": "rm -rf ./dist && npm run build",
+    "prepublish": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf ./dist && webpack --mode=production"
+    "build": "rm -rf ./dist && webpack --mode=production && rm -rf ./dist/demo"
   },
   "publishConfig": {
     "access": "restricted"
