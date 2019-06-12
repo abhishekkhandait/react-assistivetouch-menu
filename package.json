@@ -8,8 +8,12 @@
   "private": false,
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepublish": "rm -rf ./dist && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production"
+    "build": "rm -rf ./dist && webpack --mode=production"
+  },
+  "publishConfig": {
+    "access": "restricted"
   },
   "keywords": [
     "react",
