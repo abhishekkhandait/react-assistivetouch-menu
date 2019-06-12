@@ -37,7 +37,7 @@ export default class App extends React.Component<{}, {}> {
       <div>
         <AssistiveTouch
           size="L"
-          behaviour="freeflow"
+          behaviour='snapToSides'
           initialPos={this.initialPos}
           menuItems={this.getMenuItems()}
         />
