@@ -13,7 +13,7 @@ export class AssistiveTouch extends React.Component<AssistiveTouchProps, Assisti
 	private prePos: AssitiveTouchPosition;
 	private domRef: React.RefObject<HTMLDivElement>;
 	private positionChanged: boolean;
-	private screen: { width: number, height: number };
+	private lastMousePosition: MouseEvent | Touch;
 
 	constructor(props, state) {
 		super(props, state);
@@ -29,11 +29,14 @@ export class AssistiveTouch extends React.Component<AssistiveTouchProps, Assisti
 			position: this.props.initialPos,
 			isOpen: false
 		});
-		this.screen = {
-			width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-			height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
-		}
+		window.addEventListener("resize", () => this.snapToSide(this.lastMousePosition));
 	}
+
+	componentWillUnmount() {
+		// window.removeEventListener("resize", this.setState);
+	}
+
+	private
 
 	private setstyles() {
 		return {
@@ -54,15 +57,16 @@ export class AssistiveTouch extends React.Component<AssistiveTouchProps, Assisti
 	};
 
 	private onMouseMove = (e: MouseEvent | Touch) => {
+		const screenSize = this.getScreenSize();
 		const diffPos = {
-			left: e.clientX <= this.screen.width ? (e.clientX <= 0 ? this.state.position.left : this.prePos.left - e.clientX) : 0,
-			top: e.clientY <= this.screen.height ? (e.clientY <= 0 ? this.state.position.top : this.prePos.top - e.clientY) : 0,
+			left: e.clientX <= screenSize.width ? (e.clientX <= 0 ? this.state.position.left : this.prePos.left - e.clientX) : 0,
+			top: e.clientY <= screenSize.height ? (e.clientY <= 0 ? this.state.position.top : this.prePos.top - e.clientY) : 0,
 		};
 		this.positionChanged = true;
 		let left = this.state.position.left - diffPos.left;
-		left > this.screen.width - this.domRef.current.clientWidth && (left = this.screen.width - this.domRef.current.clientWidth)
+		left > screenSize.width - this.domRef.current.clientWidth && (left = screenSize.width - this.domRef.current.clientWidth)
 		let top = this.state.position.top - diffPos.top;
-		top > this.screen.height - this.domRef.current.clientHeight && (top = this.screen.height - this.domRef.current.clientHeight)
+		top > screenSize.height - this.domRef.current.clientHeight && (top = screenSize.height - this.domRef.current.clientHeight)
 
 		this.setState({
 			position: {
@@ -74,6 +78,7 @@ export class AssistiveTouch extends React.Component<AssistiveTouchProps, Assisti
 	};
 
 	private onMouseUp = e => {
+		this.lastMousePosition = e;
 		if (this.positionChanged) {
 			this.props.behaviour === 'snapToSides' && this.snapToSide(e);
 		} else {
@@ -86,43 +91,33 @@ export class AssistiveTouch extends React.Component<AssistiveTouchProps, Assisti
 	private snapToSide(e: MouseEvent | Touch) {
 		let left = this.state.position.left;
 		let top = this.state.position.top;
-
-		/* const dLeft = e.clientX - this.screen.width / 2;
-		const dTop = e.clientY - this.screen.height / 2;
-		const snapTo = Math.min(Math.abs(dLeft), Math.abs(dTop));
-
-		if (snapTo === Math.abs(dLeft)) {
-			left = dLeft <= 0 ? 0 : this.screen.width - this.domRef.current.clientWidth;
-		} else {
-			top = dTop <= 0 ? 0 : this.screen.height - this.domRef.current.clientHeight;
-		} */
-
-		if (e.clientY <= this.screen.height / 2) {
-			if (e.clientX <= this.screen.width / 2) {
+		const screenSize = this.getScreenSize();
+		if (e.clientY <= screenSize.height / 2) {
+			if (e.clientX <= screenSize.width / 2) {
 				if (e.clientY <= e.clientX) {
 					top = 0;
 				} else {
 					left = 0;
 				}
 			} else {
-				if (e.clientY <= this.screen.width - e.clientX) {
+				if (e.clientY <= screenSize.width - e.clientX) {
 					top = 0;
 				} else {
-					left = this.screen.width - this.domRef.current.clientWidth;
+					left = screenSize.width - this.domRef.current.clientWidth;
 				}
 			}
 		} else {
-			if (e.clientX <= this.screen.width / 2) {
-				if (this.screen.height - e.clientY <= e.clientX) {
-					top = this.screen.height - this.domRef.current.clientHeight;
+			if (e.clientX <= screenSize.width / 2) {
+				if (screenSize.height - e.clientY <= e.clientX) {
+					top = screenSize.height - this.domRef.current.clientHeight;
 				} else {
 					left = 0;
 				}
 			} else {
-				if (this.screen.height - e.clientY <= this.screen.width - e.clientX) {
-					top = this.screen.height - this.domRef.current.clientHeight;
+				if (screenSize.height - e.clientY <= screenSize.width - e.clientX) {
+					top = screenSize.height - this.domRef.current.clientHeight;
 				} else {
-					left = this.screen.width - this.domRef.current.clientWidth;
+					left = screenSize.width - this.domRef.current.clientWidth;
 				}
 			}
 		}
@@ -165,6 +160,13 @@ export class AssistiveTouch extends React.Component<AssistiveTouchProps, Assisti
 	private renderMenu() {
 		if (!this.positionChanged) {
 			return <AssistiveTouchMenu menuItems={this.props.menuItems} open={this.state.isOpen} position={this.state.position} onClickOverlay={this.onClickOverlay} />;
+		}
+	}
+
+	private getScreenSize() {
+		return {
+			width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+			height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
 		}
 	}
 
