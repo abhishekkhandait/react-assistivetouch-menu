@@ -10,6 +10,7 @@
   "scripts": {
     "prepublish": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start:demo": "webpack-dev-server --watch --open --config=./demo/webpack.config.js",
     "build": "rm -rf ./dist && webpack --mode=production && rm -rf ./dist/demo"
   },
   "keywords": [
@@ -38,7 +39,8 @@
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
     "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.3"
+    "webpack-cli": "^3.3.3",
+    "webpack-dev-server": "^3.7.1"
   },
   "bugs": {
     "url": "https://github.com/abhishekkhandait/react-assistivetouch-menu/issues"

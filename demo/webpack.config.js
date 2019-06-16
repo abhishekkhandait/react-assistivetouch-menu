@@ -2,10 +2,11 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./index.tsx",
+  entry: path.resolve(__dirname, "./index.tsx"),
   mode: 'development',
   output: {
-    filename: "index.js"
+    path: path.resolve(__dirname, "./"),
+    filename: "index.js",
   },
   module: {
     rules: [
@@ -36,5 +37,11 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
-  ]
+  ],
+  devServer: {
+    contentBase: './demo',
+    historyApiFallback: true,
+    compress: true,
+    port: 9000
+  }
 };
