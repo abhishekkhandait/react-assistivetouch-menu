@@ -1,12 +1,12 @@
-![enter image description here](https://i.imgur.com/vOWvq0q.png)
+![React Assistivetouch Menu](https://i.imgur.com/vOWvq0q.png)
 
 React assistivetouch menu is a react component inspired from iOS assitivetouch.
 
 [![npm badge](https://img.shields.io/npm/v/react-assistivetouch-menu.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/react-assistivetouch-menu) [![Greenkeeper badge](https://badges.greenkeeper.io/abhishekkhandait/react-assistivetouch-menu.svg?style=flat-square)](https://greenkeeper.io/) [![travis-ci badge](https://img.shields.io/travis/abhishekkhandait/react-assistivetouch-menu/master.svg?style=flat-square&logo=travis)](https://travis-ci.org/abhishekkhandait/react-assistivetouch-menu) [![downloads badge](https://img.shields.io/npm/dt/react-assistivetouch-menu.svg?style=flat-square)]([https://www.npmjs.com/package/react-assistivetouch-menu)
 
-# ![Assistive touch Menu](https://media.giphy.com/media/QaeDPpRDexSeSW9ZDN/giphy.gif)
+![Assistive touch Menu](https://i.imgur.com/4ZCdLnT.gif)
 
-[Demo](https://codesandbox.io/s/modest-surf-glql8)
+[JS Example](https://codesandbox.io/s/epic-merkle-964y1) | [TypeScript Example](https://codesandbox.io/s/modest-surf-glql8)
 
 ## Installation
 
@@ -15,55 +15,71 @@ The easiest way to use react-select is to install it from npm and build it into 
 ```bash
 yarn add react-assistivetouch-menu
 ```
+or
+```bash
+npm install react-assistivetouch-menu --save
+```
+or
+```bash
+<script src="https://unpkg.com/react-assistivetouch-menu@0.0.2/dist/index.js"></script>
+```
 
 ## Usage
 
-```typescript
-#App.tsx
-import * as React from "react";
-import { AssistiveTouch, MenuItem } from "react-assitivetouch-menu";
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import { AssistiveTouch } from "react-assistivetouch-menu";
 
-export default class App extends React.Component<{}, {}> {
-  private initialPos = { left: 0, top: 200 };
-  private getMenuItems(): MenuItem[] {
-    return [
-      {
-        icon: <div className="menuitem">★</div>,
-        label: "Custom"
-      },
-      {
-        icon: <div className="menuitem">🖐</div>,
-        label: "Gestures"
-      },
-      {
-        icon: <div className="menuitem">⊕</div>,
-        label: "Add"
-      },
-      {
-        icon: <div className="menuitem">😴</div>,
-        label: "Snooze"
-      },
-      {
-        icon: <div className="menuitem">🍟</div>,
-        label: "Fries"
-      },
-      {
-        icon: <div className="menuitem">🙋</div>,
-        label: "Hey"
-      }
-    ];
-  }
-
-  render() {
-    return (
-      <div>
-        <AssistiveTouch size="L" behaviour="freeflow" initialPos={this.initialPos} menuItems={this.getMenuItems()} />
-      </div>
-    );
-  }
+function getMenuItems() {
+  return [{
+      icon: <div className="menuitem">★</div>,
+      label: "Custom"
+    },{
+      icon: <div className="menuitem">🖐</div>,
+      label: "Gestures"
+    },{
+      icon: <div className="menuitem">⊕</div>,
+      label: "Add"
+    },{
+      icon: <div className="menuitem">😴</div>,
+      label: "Snooze"
+    },{
+      icon: <div className="menuitem">🍟</div>,
+      label: "Fries"
+    },{
+      icon: <div className="menuitem">🙋</div>,
+      label: "Hey"
+    }];
 }
 
+function App() {
+  return (
+    <AssistiveTouch size="L" behaviour="snapToSides" initialPos={{ left: 0, top: 200 }} menuItems={getMenuItems()}
+    />
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
 ```
+## Props
+
+| prop                         | type      | description                                                                                                                                    |
+| ---------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `menuItems`                   | `array`    | Array of `items` to be added to menu. `item` is object having 2 properties. 'icon' which has to be a JSX Element and `label` for the icon. Ex. `menuItems=[{icon: <ABC></ABC>, label: 'ABC'}]`                                                                           |
+| `behaviour`                    | `'snapToSides' | 'freeflow'`  | specify the behaviour of assistive touch menu ball. Default: `snapToSides`                                                                                        |
+| `size`                    | `'XS' | 'S' | 'M' | 'L' | 'XL'`  | Specify the size of menu. Default: `M`                                                                                                   |
+| `initialPos`             | `object`    | Specify the initial position of menu ball. Position has to be passed as object `{left: number, top: number}`. Default: `{left: 0, top: 0}` |
+
+
+## Development
+
+### Build
+1. `yarn`
+2. `yarn build`
+ ### Debug
+ To debug you can run demo app and test your changes over it. Just run `yarn start:demo` which will fire up dev server on `http://localhost:9000`  for testing and debugging the component.
 
 ## Contributing
 
@@ -71,4 +87,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+MIT License
+Copyright (c) 2019 Abhishek Khandait
