@@ -1,6 +1,7 @@
 demo
 node_modules
 src
+_config.yml
 .gitignore
 yarn.lock
 tsconfig.json
