@@ -40,7 +40,7 @@
     "typescript": "^3.5.1",
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.3",
-    "webpack-dev-server": "^3.7.1"
+    "webpack-dev-server": "^3.7.2"
   },
   "bugs": {
     "url": "https://github.com/abhishekkhandait/react-assistivetouch-menu/issues"
