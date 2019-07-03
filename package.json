@@ -30,7 +30,7 @@
     "url": "https://github.com/abhishekkhandait/react-assistivetouch-menu.git"
   },
   "devDependencies": {
-    "@types/react": "^16.8.20",
+    "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "css-loader": "^3.0.0",
     "react": "^16.8.6",
