@@ -1,4 +1,5 @@
 ![React Assistivetouch Menu](https://i.imgur.com/vOWvq0q.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fabhishekkhandait%2Freact-assistivetouch-menu.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fabhishekkhandait%2Freact-assistivetouch-menu?ref=badge_shield)
 
 React assistivetouch menu is a react component inspired from iOS assitivetouch.
 
@@ -89,3 +90,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 MIT License
 Copyright (c) 2019 Abhishek Khandait
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fabhishekkhandait%2Freact-assistivetouch-menu.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fabhishekkhandait%2Freact-assistivetouch-menu?ref=badge_large)
