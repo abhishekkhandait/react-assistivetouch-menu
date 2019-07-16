@@ -2,7 +2,13 @@ language: node_js
 node_js:
     - "stable"
 cache: yarn
+before_script:
+	- "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
 script:
     - yarn build
+    - fossa init
+    - fossa analyze
+after_success:
+    - cd <SOURCE_DIR> && fossa test
 on:
     branch: master
