@@ -1,5 +1,5 @@
 {
-  "name": "react-assistivetouch-menu",
+  "name": "@abhishekkhandait/react-assistivetouch-menu",
   "version": "0.0.3",
   "description": "iOS inspired assistive touch menu built with React",
   "main": "dist/index.js",
@@ -7,7 +7,9 @@
   "license": "MIT",
   "private": false,
   "types": "dist/index.d.ts",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "prepublish": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1",
