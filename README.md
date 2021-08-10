@@ -10,7 +10,7 @@ React assistivetouch menu is a react component inspired from iOS assitivetouch.
 
 ## Installation
 
-The easiest way to use react-select is to install it from npm and build it into your app with Webpack.
+The easiest way to use react-select is to install it from npm and build it into your app with Webpack
 
 ```bash
 yarn add react-assistivetouch-menu
